@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: "#444",
         tcolor: "#fdfdfd",
-        tcolor_secondary: "#58575c",
+        tcolor_secondary: "#d4d4d4",
         bg: "#1a191e",
       },
     },
