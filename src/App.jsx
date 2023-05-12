@@ -31,7 +31,7 @@ function App() {
         </div>
         <div>
           <Link to="" className="border-2 rounded-full px-3 py-3">
-            Connect Wallet
+            Log in
           </Link>
         </div>
       </nav>
