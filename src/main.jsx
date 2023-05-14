@@ -3,6 +3,9 @@ import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Landing from "./pages/Landing";
+import { SignIn } from "./pages/SignIn.jsx";
+import { store } from "./store.js";
+import { Provider } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +22,14 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <h1>Login</h1>
-      }
+        element: <SignIn />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

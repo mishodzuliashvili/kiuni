@@ -1,12 +1,13 @@
-import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import kiuImg from "../assets/kiu.jpg";
 import { Link } from "react-router-dom";
 import { faArrowRight, faBolt } from "@fortawesome/free-solid-svg-icons";
+import { AnimatedPage } from "../components/AnimatedPage";
 
 const Landing = () => {
   return (
-    <div className="grid md:grid-cols-2 pt-20 gap-10 relative overflow-hidden">
+    <AnimatedPage>
+      <div className="grid md:grid-cols-2 pt-20 gap-10 relative overflow-hidden">
         <div className="flex flex-col gap-5">
           <p className="text-xl">
             <FontAwesomeIcon icon={faBolt} />{" "}
@@ -38,7 +39,8 @@ const Landing = () => {
           alt=""
         />
       </div>
-  )
-}
+    </AnimatedPage>
+  );
+};
 
-export default Landing
+export default Landing;
