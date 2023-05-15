@@ -3,12 +3,30 @@
 @tailwind utilities;
 
 body {
+    --placeholder-color: #ffffffc0;
     --bg: #1a191e;
     background-color: var(--bg);
     color: #fdfdfd;
     font-family: 'Raleway', sans-serif;
 }
 
+
+input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--placeholder-color);
+    opacity: 1;
+    /* Firefox */
+}
+
+input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--placeholder-color);
+}
+
+input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--placeholder-color);
+}
 
 /* spinner */
 .lds-dual-ring {

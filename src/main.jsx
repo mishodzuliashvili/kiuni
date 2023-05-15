@@ -6,6 +6,8 @@ import Landing from "./pages/Landing";
 import { SignIn } from "./pages/SignIn.jsx";
 import { store } from "./store.js";
 import { Provider } from "react-redux";
+import { SignUp } from "./pages/SignUp.jsx";
+import { UserPage } from "./pages/UserPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <SignIn />,
+      },
+      {
+        path: "register",
+        element: <SignUp />,
+      },
+      {
+        path: "user",
+        element: <UserPage />,
       },
     ],
   },

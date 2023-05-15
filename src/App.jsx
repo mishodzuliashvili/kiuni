@@ -4,16 +4,24 @@ import { useDispatch } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { login } from "./userSlice";
 import { Loading } from "./components/Loading";
+import { doc, getDoc } from "firebase/firestore";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setLoading(true);
       if (user) {
-        dispatch(login(user));
+        await getDoc(doc(db, "users", user.email)).then((docSnap) => {
+          if (docSnap.exists()) {
+            dispatch(login({ email: user.email, ...docSnap.data() }));
+          } else {
+            console.log("No such document!");
+          }
+        });
       } else {
         dispatch(login(null));
       }

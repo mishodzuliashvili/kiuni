@@ -3,12 +3,11 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../firebase";
-import { Loading } from "../components/Loading";
 import { AnimatedPage } from "../components/AnimatedPage";
 import { useSelector } from "react-redux";
+import { Loader } from "../components/Loader";
 export const SignIn = () => {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
   const [signInWithEmailAndPassword, , loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -33,26 +32,24 @@ export const SignIn = () => {
     return <Navigate to="/user" />;
   }
   if (loading) {
-    return <Loading />;
+    return <Loader />;
   }
   return (
     <AnimatedPage>
       <form
         onSubmit={formik.handleSubmit}
-        className="p-5 flex flex-col gap-3 items-start"
+        className="pt-20 flex flex-col gap-5 items-start"
       >
-        <h2 className="font-medium text-2xl">
-          Welcome to <span className="text-">KIU.</span>
-        </h2>
+        <h2 className="font-bold text-3xl">Login to Your Account</h2>
         <p className="text-tsecondary">
           Do not have an account?{" "}
-          <Link to="/user/register" className="underline hover:no-underline">
+          <Link to="/register" className="underline hover:no-underline">
             Create an account
           </Link>
         </p>
         {error ? <div className="text-red-300">{error.message}</div> : null}
         <input
-          className="border border-secondary p-3 bg-transparent outline-none max-w-xs w-full"
+          className="border border-[#ffffff5f] p-3 bg-transparent outline-none max-w-xs w-full"
           placeholder="Please enter your email..."
           type="email"
           name="email"
@@ -64,15 +61,18 @@ export const SignIn = () => {
           <p>{formik.errors.email}</p>
         )}
         <input
-          className="border border-secondary p-3 bg-transparent outline-none max-w-xs w-full"
+          className="border border-[#ffffff5f] p-3 bg-transparent outline-none max-w-xs w-full"
           placeholder="Please enter your password..."
           type="password"
           value={formik.values.password}
           name="password"
           onChange={formik.handleChange}
         />
+        {formik.touched.password && formik.errors.password && (
+          <p>{formik.errors.password}</p>
+        )}
         <button
-          className="border border-secondary p-3 px-5 bg-secondary font-medium outline-none max-w-xs hover:opacity-70 duration-300"
+          className="border border-[#ffffff5f] p-3 px-5 bg-secondary font-medium outline-none max-w-xs hover:opacity-70 duration-300"
           type="submit"
         >
           Sign In
